@@ -23,6 +23,9 @@
     "esModuleInterop": true,
     "noUnusedLocals": true
   },
+  "include": [
+    "lib/**/*"
+  ],
   "exclude": [
     "node_modules",
     "build",
