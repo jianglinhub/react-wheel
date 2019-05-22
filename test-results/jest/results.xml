@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="10" failures="0" time="9.74">
-  <testsuite name="classes" errors="0" failures="0" skipped="0" timestamp="2019-05-22T14:19:39" time="5.222" tests="6">
+<testsuites name="jest tests" tests="10" failures="0" time="11.831">
+  <testsuite name="我的第一个测试用例" errors="0" failures="0" skipped="0" timestamp="2019-05-22T15:07:05" time="4.902" tests="1">
+    <testcase classname="我的第一个测试用例 1 等于 2" name="我的第一个测试用例 1 等于 2" time="0.015">
+    </testcase>
+  </testsuite>
+  <testsuite name="Icon" errors="0" failures="0" skipped="0" timestamp="2019-05-22T15:07:10" time="1.218" tests="2">
+    <testcase classname="Icon render success" name="Icon render success" time="0.019">
+    </testcase>
+    <testcase classname="Icon onClick" name="Icon onClick" time="0.088">
+    </testcase>
+  </testsuite>
+  <testsuite name="classes" errors="0" failures="0" skipped="0" timestamp="2019-05-22T15:07:05" time="5.863" tests="6">
     <testcase classname="classes test receive 0 className" name="classes test receive 0 className" time="0.008">
     </testcase>
     <testcase classname="classes test receive 1 className" name="classes test receive 1 className" time="0.002">
     </testcase>
-    <testcase classname="classes test receive 2 className" name="classes test receive 2 className" time="0.001">
+    <testcase classname="classes test receive 2 className" name="classes test receive 2 className" time="0">
     </testcase>
     <testcase classname="classes test receive undefined" name="classes test receive undefined" time="0.001">
     </testcase>
-    <testcase classname="classes test receive 1 className and undefined" name="classes test receive 1 className and undefined" time="0.001">
+    <testcase classname="classes test receive 1 className and undefined" name="classes test receive 1 className and undefined" time="0">
     </testcase>
-    <testcase classname="classes test receive other character" name="classes test receive other character" time="0">
-    </testcase>
-  </testsuite>
-  <testsuite name="button" errors="0" failures="0" skipped="0" timestamp="2019-05-22T14:19:39" time="5.355" tests="1">
-    <testcase classname="button is a react component" name="button is a react component" time="0.034">
+    <testcase classname="classes test receive other character" name="classes test receive other character" time="0.001">
     </testcase>
   </testsuite>
-  <testsuite name="Icon" errors="0" failures="0" skipped="0" timestamp="2019-05-22T14:19:39" time="5.447" tests="2">
-    <testcase classname="Icon render success" name="Icon render success" time="0.053">
-    </testcase>
-    <testcase classname="Icon onClick" name="Icon onClick" time="0.118">
-    </testcase>
-  </testsuite>
-  <testsuite name="我的第一个测试用例" errors="0" failures="0" skipped="0" timestamp="2019-05-22T14:19:44" time="0.707" tests="1">
-    <testcase classname="我的第一个测试用例 1 等于 2" name="我的第一个测试用例 1 等于 2" time="0.001">
+  <testsuite name="button" errors="0" failures="0" skipped="0" timestamp="2019-05-22T15:07:05" time="5.925" tests="1">
+    <testcase classname="button is a react component" name="button is a react component" time="0.019">
     </testcase>
   </testsuite>
 </testsuites>
