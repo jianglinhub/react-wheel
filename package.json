@@ -1,6 +1,6 @@
 {
   "name": "jlui123",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "react-wheel",
   "main": "dist/lib/index",
   "types": "dist/lib/index",
