@@ -9,3 +9,13 @@ exports[`Icon is a react component 1`] = `
   />
 </svg>
 `;
+
+exports[`Icon render success 1`] = `
+<svg
+  className="fui-icon"
+>
+  <use
+    xlinkHref="#alipay"
+  />
+</svg>
+`;
