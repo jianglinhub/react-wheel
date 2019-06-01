@@ -1,4 +1,4 @@
-import classes from '../classes'
+import classes, { scopedClassMaker } from '../classes'
 
 describe('classes', () => {
     it('test receive 0 className', () => {
@@ -25,4 +25,15 @@ describe('classes', () => {
       const result = classes('a', '中文', undefined, null, false)
       expect(result).toEqual('a 中文')
     })
+})
+
+describe('scopedClassMarker', () => {
+  it('x', () => {
+    const sc = scopedClassMaker('gu-layout')
+    expect(sc('')).toEqual('gu-layout')
+    expect(sc('x')).toEqual('gu-layout-x')
+    expect(sc({ y: true, z: false })).toEqual('gu-layout-y')
+    expect(sc({ y: true, z: true })).toEqual('gu-layout-y gu-layout-z')
+    expect(sc({ y: true, z: true }, { extra: 'red' })).toEqual('gu-layout-y gu-layout-z red')
+  })
 })
