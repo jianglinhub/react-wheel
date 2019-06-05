@@ -5,18 +5,22 @@ import IconExample from './lib/icon/icon.example'
 import ButtonExample from './lib/button/button.example'
 import DialogExample from './lib/dialog/dialog.example'
 import LayoutExample from './lib/layout/layout.example'
-import './examples/global.scss'
+import { Layout, Aside, Content, Header, Footer } from './lib/layout/layout';
+import './example.scss'
+
+const logo = require('./logo.png')
 
 ReactDOM.render((
   <Router>
-    <div>
-      <header>
+    <Layout className="site-page">
+      <Header className="site-header">
         <div className="logo">
-          FUI
+          <img src={logo} width="48" height="48" alt="logo" />
+          <span>FUI</span>
         </div>
-      </header>
-      <div>
-        <aside>
+      </Header>
+      <Layout>
+        <Aside className="site-aside">
           <h2>组件</h2>
           <ul>
             <li>
@@ -32,14 +36,17 @@ ReactDOM.render((
               <Link to="/layout">Layout</Link>
             </li>
           </ul>
-        </aside>
-        <main>
+        </Aside>
+        <Content className="site-main">
           <Route path="/icon" component={IconExample} />
           <Route path="/button" component={ButtonExample} />
           <Route path="/dialog" component={DialogExample} />
           <Route path="/layout" component={LayoutExample} />
-        </main>
-      </div>
-    </div>
+        </Content>
+      </Layout>
+      <Footer className="site-footer">
+        &copy; made in 2019-06-05
+      </Footer>
+    </Layout>
   </Router>
 ), document.getElementById('root'))
