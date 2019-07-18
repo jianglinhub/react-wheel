@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { ButtonHTMLAttributes } from 'react'
+import classes from '../helpers/classes';
+import './button.scss';
 
-function Button() {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+	level?: 'important' | 'danger' | 'normal'
+}
+
+const Button: React.FC<Props> = (props) => {
+	const { className, children, level, ...rest} = props
+
 	return (
-		<div>按钮</div>
+		<button className={classes('fui-button', `fui-button-${level}`, className)}
+			{...rest}>
+			{children}
+		</button>
 	)
+}
+
+Button.defaultProps = {
+	level: 'normal'
 }
 
 export default Button
