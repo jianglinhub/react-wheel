@@ -42,6 +42,7 @@ const FormExample: React.FC = () => {
       { key: 'password', validator },
     ]
     Validator(formData, rules, (errors) => {
+      console.log('error:', errors)
       setErrors(errors)
       if (noError(errors)) {
         //  没有错误

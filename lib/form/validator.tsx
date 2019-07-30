@@ -15,6 +15,10 @@ function isEmpty(value: any) {
   return value === undefined || value === null || value === ''
 }
 
+function hasError(item: [string, undefined] | [string, string]): item is [string, string] {
+  return typeof item[1] === 'string'
+}
+
 export function noError(errors: any) {
   return Object.keys(errors).length === 0
 }
@@ -22,7 +26,7 @@ export function noError(errors: any) {
 type OneError = string | Promise<string>
 
 const Validator = (formValue: FormValue, rules: FormRules, callback: (errors: any) => void): void => {
-  let errors: any = {}
+  let errors: { [key: string]: OneError[] } = {}
   const addError = (key: string, error: OneError) => {
     if (errors[key] === undefined) {
       errors[key] = []
@@ -52,28 +56,28 @@ const Validator = (formValue: FormValue, rules: FormRules, callback: (errors: an
     }
   })
 
-  const newPromise = flat(Object.keys(errors)
-    .map(key => 
-      errors[key]
-        .map((promise: Promise<any>) => [key, promise])
-      )).map(([key, promiseOrString]) => 
-        (promiseOrString instanceof Promise ? promiseOrString : Promise.reject(promiseOrString))
-          .then(() => [key, undefined], (reason) => [key, reason])
-    )
-  Promise.all(newPromise).then((results: Array<[string, string]>) => {
-    callback(zip(results.filter(item => item[1])))
+  const flatternErrors = flat(Object.keys(errors).map(
+    key => errors[key].map<[string, OneError]>(error => [key, error])))
+
+  const newPromise = flatternErrors.map(
+    ([key, promiseOrString]) =>
+      (promiseOrString instanceof Promise ? promiseOrString : Promise.reject(promiseOrString))
+        .then(() => [key, undefined], (reason) => [key, reason])
+  )
+  Promise.all(newPromise).then(results => {
+    callback(zip(results.filter(hasError)))
   })
 }
 
 export default Validator
 
-function flat(array: Array<any>) {
-  const result = []
+function flat<T>(array: Array<T | T[]>) {
+  const result: T[] = []
   for (let i = 0; i < array.length; i++) {
-    if (array[i] instanceof Array) {
-      result.push(...array[i])
-    } else {
-      result.push(array[i])
+    if (array[i] instanceof Array) { // T[]
+      result.push(...array[i] as T[])
+    } else { // T
+      result.push(array[i] as T)
     }
   }
   return result
@@ -81,7 +85,7 @@ function flat(array: Array<any>) {
 
 // kvList = [['username', 'e1'], ['username', 'e2']]
 function zip(kvList: Array<[string, string]>) {
-  const result: any = {}
+  const result: { [key: string]: string[] } = {}
   kvList.map(([key, value]) => {
     // kv = ['username', 'e1']
     result[key] = result[key] || []
